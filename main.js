@@ -1,0 +1,219 @@
+/* ═══════════════════════════════════════════════════════════════
+   PROSZER — interakciók
+   Reveal · hero rendszerfeltárás · szolgáltatásváltó · űrlap
+   ═══════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+
+  var d = document;
+  var root = d.documentElement;
+  root.classList.remove("no-js");
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ── 1. Scroll-reveal ─────────────────────────────────────── */
+  var revealEls = Array.prototype.slice.call(d.querySelectorAll(".reveal"));
+
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-in");
+          ro.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    revealEls.forEach(function (el) { ro.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("is-in"); });
+  }
+
+  /* ── 2. Hero rendszerfeltárás (scrollozva tárul fel) ──────── */
+  var heroFig = d.querySelector("[data-stage]");
+  var iso = d.querySelector(".iso");
+  if (heroFig && iso) {
+    if ("IntersectionObserver" in window) {
+      var ho = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            // a szöveg azonnal olvasható; az illusztráció szakaszosan tárul fel
+            var delay = reduceMotion ? 0 : 350;
+            window.setTimeout(function () { iso.classList.add("is-revealed"); }, delay);
+            ho.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+      ho.observe(heroFig);
+    } else {
+      iso.classList.add("is-revealed");
+    }
+  }
+
+  /* ── 3. Szolgáltatásváltó ─────────────────────────────────── */
+  var SVC = {
+    viz: {
+      title: "Víz és csatorna",
+      desc: "Vízvezeték- és csatornaszerelés: új vezetékek kialakítása, elavult rendszerek cseréje, berendezések bekötése."
+    },
+    gaz: {
+      title: "Gázszerelés",
+      desc: "Gázvezetékek kiépítése és átalakítása, gázkészülékek biztonságos csatlakoztatása az előírások szerint."
+    },
+    futes: {
+      title: "Fűtés és padlófűtés",
+      desc: "Fűtési rendszerek telepítése és korszerűsítése: radiátoros körök, padlófűtés kialakítása, hidraulikus egyensúly."
+    },
+    klima: {
+      title: "Klíma és hűtés",
+      desc: "Hűtési rendszerek és klímatelepítés: beltéri és külső egységek telepítése, az épület adottságaihoz igazítva."
+    },
+    hsz: {
+      title: "Hőszivattyús rendszerek",
+      desc: "Hőszivattyús rendszerek telepítése — fűtéshez, hűtéshez és használati melegvízhez, az épülethez igazítva."
+    }
+  };
+
+  var svcRows = Array.prototype.slice.call(d.querySelectorAll(".svc-row"));
+  var svcTitle = d.querySelector("[data-svc-title]");
+  var svcDesc = d.querySelector("[data-svc-desc]");
+  var svcCta = d.querySelector("[data-svc-cta]");
+  var svcSelect = d.getElementById("fSzolg");
+
+  function setService(key) {
+    var conf = SVC[key];
+    if (!conf) return;
+    svcRows.forEach(function (r) {
+      var on = r.getAttribute("data-svc") === key;
+      r.classList.toggle("active", on);
+      r.setAttribute("aria-expanded", on ? "true" : "false");
+    });
+    Array.prototype.forEach.call(d.querySelectorAll(".svc-diagram .sd"), function (g) {
+      g.classList.toggle("is-on", g.getAttribute("data-sd") === key);
+    });
+    if (svcTitle) svcTitle.textContent = conf.title;
+    if (svcDesc) svcDesc.textContent = conf.desc;
+    if (svcCta) svcCta.setAttribute("data-topic", conf.title);
+  }
+
+  svcRows.forEach(function (row) {
+    row.addEventListener("click", function () {
+      setService(row.getAttribute("data-svc"));
+    });
+  });
+
+  if (svcCta) {
+    svcCta.addEventListener("click", function () {
+      var topic = svcCta.getAttribute("data-topic") || "";
+      if (svcSelect && topic) {
+        for (var i = 0; i < svcSelect.options.length; i++) {
+          if (svcSelect.options[i].value === topic) {
+            svcSelect.value = topic;
+            svcSelect.classList.add("pre-selected");
+            break;
+          }
+        }
+      }
+    });
+  }
+
+  // kezdeti állapot
+  setService("viz");
+
+  /* ── 4. Űrlap: validáció + képelőnézet ───────────────────── */
+  var form = d.getElementById("quoteForm");
+  if (!form) return;
+
+  var status = d.getElementById("formStatus");
+
+  function setErr(input, msg) {
+    var ff = input.closest(".ff");
+    if (!ff) return;
+    var err = ff.querySelector("[data-err]");
+    ff.classList.toggle("invalid", !!msg);
+    if (err) err.textContent = msg || "";
+  }
+
+  function validate(input) {
+    var v = input.value.trim();
+    var msg = "";
+    switch (input.id) {
+      case "fNev":
+        if (v.length < 2) msg = "Kérjük, adja meg a nevét.";
+        break;
+      case "fTel":
+        if (!/^[+0-9 ()\/-]{7,}$/.test(v)) msg = "Érvényes telefonszámot adjon meg (pl. +36 20 123 4567).";
+        break;
+      case "fEmail":
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) msg = "Érvényes e-mail címet adjon meg.";
+        break;
+      case "fVaros":
+        if (v.length < 2) msg = "Kérjük, adja meg a települést.";
+        break;
+      case "fSzolg":
+        if (!v) msg = "Válasszon szolgáltatást.";
+        break;
+    }
+    setErr(input, msg);
+    return msg;
+  }
+
+  var fields = Array.prototype.slice.call(form.querySelectorAll("input[required], select[required]"));
+  fields.forEach(function (input) {
+    input.addEventListener("blur", function () { validate(input); });
+    input.addEventListener("input", function () {
+      if (input.closest(".ff").classList.contains("invalid")) validate(input);
+    });
+  });
+
+  /* képelőnézet */
+  var fileInput = d.getElementById("fKep");
+  var thumbs = d.getElementById("thumbs");
+
+  if (fileInput && thumbs) {
+    fileInput.addEventListener("change", function () {
+      Array.prototype.slice.call(fileInput.files).forEach(function (file) {
+        if (!file.type.match(/^image\//)) return;
+        var url = URL.createObjectURL(file);
+        var wrap = d.createElement("div");
+        wrap.className = "thumb";
+        var img = d.createElement("img");
+        img.src = url;
+        img.alt = "Feltöltött kép előnézete: " + file.name;
+        var x = d.createElement("button");
+        x.type = "button";
+        x.className = "thumb-x";
+        x.setAttribute("aria-label", "Kép eltávolítása");
+        x.textContent = "×";
+        x.addEventListener("click", function () {
+          URL.revokeObjectURL(url);
+          wrap.remove();
+        });
+        wrap.appendChild(img);
+        wrap.appendChild(x);
+        thumbs.appendChild(wrap);
+      });
+    });
+  }
+
+  /* beküldés — látványterv: NEM küld adatot */
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var firstBad = null;
+    fields.forEach(function (input) {
+      var msg = validate(input);
+      if (msg && !firstBad) firstBad = input;
+    });
+    if (firstBad) {
+      firstBad.focus();
+      if (status) {
+        status.textContent = "Kérjük, ellenőrizze a bejelölt mezőket.";
+        status.className = "form-status err";
+      }
+      return;
+    }
+    if (status) {
+      status.textContent = "Ez látványterv — az adatok nem kerülnek elküldésre. A kész oldalon közvetlenül a ProSzerhez jutnának.";
+      status.className = "form-status ok";
+    }
+  });
+})();
