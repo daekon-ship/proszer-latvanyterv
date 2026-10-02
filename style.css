@@ -59,9 +59,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .light .kicker { color: var(--copper-deep); }
 
-h1, h2, h3 { font-weight: 640; letter-spacing: -0.02em; line-height: 1.02; }
-h1 { font-size: clamp(44px, 7.4vw, 118px); }
-h2 { font-size: clamp(32px, 4.6vw, 64px); }
+h1, h2, h3 { font-weight: 640; letter-spacing: -0.015em; line-height: 1.06; }
+h1 { font-size: clamp(36px, 5vw, 74px); }
+h2 { font-size: clamp(26px, 3vw, 42px); }
 
 /* ═══════════════ FEJLÉC ═══════════════ */
 .site-header {
@@ -132,10 +132,10 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
 .hero h1 em { font-style: normal; color: var(--copper); }
 
 .hero-lead {
-  margin-top: clamp(18px, 2.4vw, 28px);
-  font-size: clamp(17px, 1.5vw, 21px);
+  margin-top: clamp(16px, 2vw, 24px);
+  font-size: clamp(16px, 1.25vw, 18px);
   color: rgba(242, 241, 235, .78);
-  max-width: 46ch;
+  max-width: 52ch;
   font-weight: 340;
 }
 
@@ -260,7 +260,7 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
   position: relative;
 }
 .btn-sm { padding: 11px 18px; font-size: 14px; min-height: 44px; }
-.btn-lg { padding: 18px 32px; font-size: 18px; }
+.btn-lg { padding: 16px 28px; font-size: 17px; }
 .btn-copper {
   background: var(--copper); color: var(--ink);
   box-shadow: 0 10px 30px -12px rgba(211, 139, 89, .55);
@@ -281,7 +281,7 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
 /* ═══════════════ A) BEMUTATKOZÁS ═══════════════ */
 .light { background: var(--paper); color: var(--ink); }
 
-.about { padding: clamp(80px, 12vh, 150px) 0; }
+.about { padding: clamp(64px, 9vh, 112px) 0; }
 .about-grid {
   display: grid; grid-template-columns: minmax(0, 52fr) minmax(0, 48fr);
   gap: clamp(36px, 6vw, 90px); align-items: center;
@@ -303,14 +303,14 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
 
 /* ═══════════════ B) SZOLGÁLTATÁSOK ═══════════════ */
 .services {
-  padding: clamp(80px, 12vh, 150px) 0;
+  padding: clamp(64px, 9vh, 112px) 0;
   background:
     radial-gradient(800px 420px at 110% 10%, rgba(130, 185, 200, .06), transparent 60%),
     radial-gradient(700px 420px at -10% 90%, rgba(211, 139, 89, .07), transparent 60%),
     var(--ink-2);
 }
 .services-head { max-width: 760px; }
-.services-sub { margin-top: 16px; color: rgba(242, 241, 235, .66); font-size: clamp(16px, 1.4vw, 19px); }
+.services-sub { margin-top: 16px; color: rgba(242, 241, 235, .66); font-size: clamp(15px, 1.2vw, 17px); }
 
 .svc-layout {
   display: grid; grid-template-columns: minmax(0, 56fr) minmax(0, 44fr);
@@ -323,7 +323,7 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
 .svc-row {
   display: grid; grid-template-columns: 64px 1fr 40px; align-items: center;
   width: 100%; text-align: left; gap: 10px;
-  padding: clamp(20px, 2.6vw, 30px) 6px;
+  padding: clamp(16px, 2vw, 24px) 6px;
   border-bottom: 1px solid rgba(242, 241, 235, .14);
   color: rgba(242, 241, 235, .62);
   transition: color .3s, padding-left .3s, background .3s;
@@ -338,7 +338,7 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
 .svc-row.active { color: var(--paper); padding-left: 18px; }
 .svc-row.active::before { transform: scaleY(1); }
 .svc-num { font-size: 12px; letter-spacing: .18em; color: var(--copper); }
-.svc-name { font-size: clamp(21px, 2.4vw, 32px); font-weight: 620; letter-spacing: -0.015em; line-height: 1.1; }
+.svc-name { font-size: clamp(18px, 1.8vw, 24px); font-weight: 620; letter-spacing: -0.01em; line-height: 1.2; }
 .svc-hint { font-size: 18px; color: rgba(242, 241, 235, .4); text-align: right; transition: transform .3s, color .3s; }
 .svc-row.active .svc-hint { transform: rotate(45deg); color: var(--copper); }
 
@@ -359,13 +359,13 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
 .svc-diagram .sd-line.blue { stroke: var(--blue); stroke-width: 2.6; fill: none; stroke-linecap: round; }
 .svc-diagram .sd-spin { transform-box: fill-box; transform-origin: center; animation: rot 3s linear infinite; }
 
-.svc-text h3 { font-size: clamp(22px, 2vw, 28px); margin-bottom: 10px; }
+.svc-text h3 { font-size: clamp(19px, 1.6vw, 23px); margin-bottom: 10px; }
 .svc-text p { color: rgba(242, 241, 235, .7); font-size: 15.5px; margin-bottom: 18px; min-height: 3.2em; }
 .svc-text .btn { align-self: start; }
 
 /* ═══════════════ C) KÉPI BEMUTATÓ ═══════════════ */
-.gallery { padding: clamp(80px, 12vh, 150px) 0; }
-.gallery-sub { margin-top: 14px; color: rgba(16, 23, 25, .66); font-size: clamp(16px, 1.4vw, 19px); max-width: 54ch; }
+.gallery { padding: clamp(64px, 9vh, 112px) 0; }
+.gallery-sub { margin-top: 14px; color: rgba(16, 23, 25, .66); font-size: clamp(15px, 1.2vw, 17px); max-width: 54ch; }
 
 .plate-grid {
   display: grid; grid-template-columns: repeat(12, 1fr);
@@ -381,12 +381,15 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
 .plate figcaption {
   margin-top: 10px; font-size: 10.5px; letter-spacing: .2em; color: rgba(16, 23, 25, .6);
 }
+.plate .svgmono, .about-figure .svgmono {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .16em;
+}
 .plate { transition: transform .35s ease; }
 .plate:hover { transform: translateY(-4px); }
 
 /* ═══════════════ D) TELEFONOS EGYEZTETÉS ═══════════════ */
 .callout {
-  padding: clamp(90px, 14vh, 170px) 0;
+  padding: clamp(64px, 10vh, 120px) 0;
   background:
     radial-gradient(720px 400px at 20% 20%, rgba(211, 139, 89, .12), transparent 60%),
     var(--ink);
@@ -394,11 +397,11 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
   text-align: left;
 }
 .callout .kicker { color: var(--copper); }
-.callout-sub { margin-top: 18px; font-size: clamp(17px, 1.6vw, 21px); color: rgba(242, 241, 235, .75); max-width: 44ch; }
+.callout-sub { margin-top: 16px; font-size: clamp(16px, 1.3vw, 18px); color: rgba(242, 241, 235, .75); max-width: 48ch; }
 .callout-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: clamp(28px, 4vw, 44px); }
 
 /* ═══════════════ E) AJÁNLATKÉRŐ ═══════════════ */
-.quote { padding: clamp(80px, 12vh, 150px) 0; }
+.quote { padding: clamp(64px, 9vh, 112px) 0; }
 .quote-grid {
   display: grid; grid-template-columns: minmax(0, 42fr) minmax(0, 58fr);
   gap: clamp(36px, 6vw, 90px); align-items: start;
@@ -464,7 +467,7 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
 .form-status.err { color: #A4431F; }
 
 /* ═══════════════ F) KAPCSOLAT + FOOTER ═══════════════ */
-.contact { padding: clamp(80px, 12vh, 140px) 0 60px; }
+.contact { padding: clamp(64px, 9vh, 110px) 0 48px; }
 .contact-grid {
   display: grid; grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
   gap: clamp(36px, 5vw, 80px); align-items: start;
@@ -474,7 +477,7 @@ h2 { font-size: clamp(32px, 4.6vw, 64px); }
 .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(242, 241, 235, .12); border: 1px solid rgba(242, 241, 235, .12); }
 .cc { background: var(--ink); padding: clamp(18px, 2.2vw, 28px); display: grid; gap: 6px; align-content: start; }
 .cc-label { font-size: 10px; letter-spacing: .22em; color: var(--copper); text-transform: uppercase; }
-.cc-value { font-size: clamp(16px, 1.5vw, 19px); font-weight: 560; width: fit-content; }
+.cc-value { font-size: clamp(15px, 1.15vw, 17px); font-weight: 560; width: fit-content; }
 a.cc-value:hover { color: var(--copper); }
 .cc-map { font-size: 11px; letter-spacing: .14em; color: rgba(242, 241, 235, .6); margin-top: 6px; width: fit-content; border-bottom: 1px solid rgba(242, 241, 235, .25); padding-bottom: 2px; }
 .cc-map:hover { color: var(--blue); border-color: var(--blue); }
@@ -483,20 +486,34 @@ a.cc-value:hover { color: var(--copper); }
 .daibau a { border-bottom: 1px solid rgba(242, 241, 235, .25); padding-bottom: 1px; }
 .daibau a:hover { color: var(--paper); border-color: var(--copper); }
 
-.site-footer { border-top: 1px solid rgba(242, 241, 235, .1); padding: clamp(50px, 8vh, 90px) 0 120px; overflow: clip; }
-.footer-wordmark .wm-pro, .footer-wordmark .wm-szer { font-size: inherit; }
-.footer-wordmark {
-  font-size: clamp(88px, 16vw, 230px); line-height: .92; letter-spacing: -0.03em;
-  font-weight: 780; white-space: nowrap;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(242, 241, 235, .3);
-  user-select: none;
+.site-footer {
+  border-top: 1px solid rgba(242, 241, 235, .1);
+  padding: 52px 0 110px;
+  background: #0C1214;
 }
-.footer-wordmark .wm-szer { -webkit-text-stroke: 1.5px rgba(211, 139, 89, .5); font-weight: 300; }
+.footer-grid {
+  display: flex; flex-wrap: wrap; gap: 30px 64px;
+  justify-content: space-between; align-items: flex-start;
+}
+.footer-brand { display: grid; gap: 10px; }
+.footer-brand .wm-pro, .footer-brand .wm-szer { font-size: 30px; }
+.footer-tag { font-size: 13.5px; color: rgba(242, 241, 235, .55); max-width: 32ch; }
+.footer-nav { display: flex; flex-wrap: wrap; gap: 8px 26px; }
+.footer-nav a {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(242, 241, 235, .6); padding: 6px 0;
+}
+.footer-nav a:hover, .footer-nav a:focus-visible { color: var(--paper); }
+.footer-contact-mini { display: grid; gap: 7px; font-size: 13.5px; }
+.footer-contact-mini a {
+  color: rgba(242, 241, 235, .75); width: fit-content;
+  border-bottom: 1px solid rgba(242, 241, 235, .18); padding-bottom: 1px;
+}
+.footer-contact-mini a:hover, .footer-contact-mini a:focus-visible { color: var(--copper); border-color: var(--copper); }
 .footer-bottom {
-  display: flex; flex-wrap: wrap; gap: 10px 30px; justify-content: space-between;
-  margin-top: clamp(30px, 5vh, 54px);
-  font-size: 11.5px; letter-spacing: .1em; color: rgba(242, 241, 235, .48);
+  display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: space-between; align-items: baseline;
+  margin-top: 44px; padding-top: 18px; border-top: 1px solid rgba(242, 241, 235, .08);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: rgba(242, 241, 235, .45);
 }
 .to-top:hover { color: var(--paper); }
 
@@ -572,7 +589,7 @@ a.cc-value:hover { color: var(--copper); }
   .site-footer { padding-bottom: 150px; }
   .quote-form { grid-template-columns: 1fr; }
   .contact-cards { grid-template-columns: 1fr; }
-  .hero h1 { font-size: clamp(40px, 12.5vw, 64px); }
+  .hero h1 { font-size: clamp(34px, 10.5vw, 54px); }
   .hero-actions .btn { width: 100%; }
   .hero-actions .btn-copper { align-items: flex-start; }
   .hero-meta { gap: 8px 18px; font-size: 10.5px; }
