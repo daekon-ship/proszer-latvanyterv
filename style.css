@@ -105,6 +105,14 @@ h2 { font-size: clamp(26px, 3vw, 42px); }
 .cta-label { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; color: var(--copper); text-transform: uppercase; }
 .cta-num { font-weight: 640; font-size: 15px; letter-spacing: .01em; }
 
+/* mobil fejléc-jobb oldali műszaki jelzés (dekoratív, nem CTA) */
+.header-tag {
+  display: none; align-items: center; gap: 10px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .26em;
+  color: var(--copper); text-transform: uppercase; white-space: nowrap;
+}
+.header-tag::before { content: ""; width: 22px; height: 1px; background: currentColor; opacity: .55; }
+
 .site-header { transition: background .3s ease, border-color .3s ease; }
 .site-header.is-scrolled {
   background: color-mix(in srgb, var(--ink) 95%, transparent);
@@ -469,7 +477,11 @@ h2 { font-size: clamp(26px, 3vw, 42px); }
   margin-top: clamp(40px, 5vw, 72px);
   align-items: start;
 }
-.plate { position: relative; min-width: 0; }
+.plate {
+  position: relative; min-width: 0;
+  --ghost: clamp(56px, 6.5vw, 96px);
+  padding-top: calc(var(--ghost) + 8px);
+}
 .plate:nth-of-type(1) { grid-column: span 7; }
 .plate:nth-of-type(2) { grid-column: span 5; margin-top: clamp(24px, 4vw, 72px); }
 .plate:nth-of-type(3) { grid-column: span 5; }
@@ -488,8 +500,8 @@ h2 { font-size: clamp(26px, 3vw, 42px); }
 .plate-dark .sheet-code { color: rgba(242, 241, 235, .5); }
 
 .plate::after {
-  content: attr(data-num); position: absolute; top: -.5em; left: -.04em; z-index: 1;
-  font-family: var(--mono); font-weight: 600; font-size: clamp(56px, 6.5vw, 100px); line-height: 1;
+  content: attr(data-num); position: absolute; top: 0; left: 0; z-index: 1;
+  font-family: var(--mono); font-weight: 600; font-size: var(--ghost); line-height: 1;
   letter-spacing: -.04em; color: transparent; -webkit-text-stroke: 1.2px rgba(16, 23, 25, .2); pointer-events: none;
 }
 .plate-dark::after { -webkit-text-stroke: 1.2px rgba(211, 139, 89, .42); }
@@ -505,6 +517,7 @@ h2 { font-size: clamp(26px, 3vw, 42px); }
 @media (max-width: 900px) {
   .gallery-head { flex-direction: column; align-items: flex-start; }
   .gallery-stamp { text-align: left; border-right: 0; border-left: 3px solid var(--copper); padding: 0 0 0 14px; }
+  .plate { --ghost: 46px; }
   .plate:nth-of-type(n) { grid-column: span 12; margin-top: 0; }
 }
 
@@ -695,7 +708,7 @@ a.cc-value:hover { color: var(--copper); }
 
 /* ═══════════════ RESPONZÍV ═══════════════ */
 @media (max-width: 1100px) {
-  .hero-grid { grid-template-columns: 1fr; align-content: start; padding-top: clamp(20px, 4vh, 40px); }
+  .hero-grid { grid-template-columns: 1fr; align-content: start; padding-top: clamp(12px, 2vh, 24px); }
   .hero { min-height: auto; }
   .hero-visual { max-width: 660px; }
   .iso.is-revealed .shell-front { opacity: .45; }
@@ -711,6 +724,15 @@ a.cc-value:hover { color: var(--copper); }
 
 @media (max-width: 768px) {
   .header-cta { display: none; }
+  .site-header {
+    min-height: 56px;
+    padding: 10px var(--pad);
+    padding-top: calc(10px + env(safe-area-inset-top));
+  }
+  .header-tag { display: inline-flex; }
+  .hero { padding-top: calc(60px + env(safe-area-inset-top)); }
+  .hero-grid { padding-top: 16px; }
+  [id] { scroll-margin-top: 64px; }
 }
 
 @media (max-width: 640px) {
@@ -732,6 +754,8 @@ a.cc-value:hover { color: var(--copper); }
 
 @media (max-width: 400px) {
   :root { --pad: 18px; }
+  .plate { --ghost: 40px; }
+  .hero .kicker { font-size: 10px; letter-spacing: .14em; }
   .cta-num { font-size: 13.5px; }
   .header-cta { padding: 7px 10px; }
   .hero-meta { display: none; }
