@@ -46,10 +46,10 @@
       <p class="hero-lead reveal">Víz, fűtés, hűtés és korszerű gépészet. Épületgépészeti kivitelezés gyáli székhellyel.</p>
       <div class="hero-actions reveal">
         <a class="btn btn-copper" href="tel:+36204002944">
-          <span class="btn-num">Beszéljük át a munkát</span>
+          <span class="btn-row"><svg class="btn-ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.2 2.6c.5-.5 1.3-.5 1.8 0l1.9 1.9c.5.5.5 1.3 0 1.8l-.9.9c.9 1.9 2.4 3.4 4.3 4.3l.9-.9c.5-.5 1.3-.5 1.8 0l1.9 1.9c.5.5.5 1.3 0 1.8l-1 1c-.6.6-1.5.9-2.3.6-4.6-1.4-8.2-5-9.6-9.6-.3-.8 0-1.7.6-2.3l.6-.6z" fill="currentColor"/></svg><span class="btn-num">Beszéljük át a munkát</span></span>
           <span class="btn-sub mono">+36 20 400 2944</span>
         </a>
-        <a class="btn btn-ghost" href="#ajanlat">Ajánlatot kérek</a>
+        <a class="btn btn-ghost" href="#ajanlat"><span class="btn-line">Ajánlatot kérek <span class="arr" aria-hidden="true">→</span></span></a>
       </div>
       <div class="hero-meta mono reveal" aria-hidden="true">
         <span class="hm-item"><i class="dot dot-copper"></i>fűtés — padlófűtés</span>
@@ -89,7 +89,31 @@
               <stop offset="0" stop-color="#82B9C8" stop-opacity=".20"/>
               <stop offset="1" stop-color="#82B9C8" stop-opacity="0"/>
             </radialGradient>
+            <radialGradient id="gShadow" cx="50%" cy="50%" r="50%">
+              <stop offset="0" stop-color="#000000" stop-opacity=".34"/>
+              <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+            </radialGradient>
+            <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="7" stroke="#F2F1EB" stroke-opacity=".07" stroke-width="1"/>
+            </pattern>
           </defs>
+
+          <!-- ── MÉLYSÉG: fénypárna, vetett árnyék, metszetjelzés ── -->
+          <g class="iso-atmo" aria-hidden="true">
+            <ellipse cx="330" cy="310" rx="290" ry="235" fill="url(#gGlowB)" opacity=".55"/>
+            <ellipse cx="220" cy="430" rx="235" ry="165" fill="url(#gGlowC)" opacity=".6"/>
+            <ellipse class="ground-shadow" cx="326" cy="514" rx="235" ry="32"/>
+            <g>
+              <path class="bp-line" d="M20 260 H620 M20 340 H620 M20 420 H620"/>
+              <path class="bp-line" d="M120 120 V545 M280 90 V560 M440 110 V555 M560 160 V520"/>
+            </g>
+            <g>
+              <path class="cutline" d="M196 188 H444"/>
+              <path class="cutflag" d="M196 188 l16 -8 v16 z"/>
+              <path class="cutflag" d="M444 188 l-16 -8 v16 z"/>
+              <text x="320" y="174" class="svgmono cut-t" text-anchor="middle">A — A METSZET</text>
+            </g>
+          </g>
 
           <!-- talaj + "szelvényező" segédrács -->
           <g class="iso-ground">
@@ -104,34 +128,36 @@
               <rect class="hp-fan" x="86" y="404" width="64" height="72" rx="8" fill="#101719" stroke="#D38B59" stroke-width="2"/>
               <circle class="hp-fanblade" cx="118" cy="440" r="20" fill="none" stroke="#D38B59" stroke-width="2"/>
               <path class="hp-fanblade" d="M118 420 V460 M98 440 H138" stroke="#D38B59" stroke-width="1.4"/>
-              <path d="M150 452 c14 0 22 -8 22 -20" fill="none" class="pipe-copper pipe-flow-a"/>
-              <path d="M150 428 c14 0 22 8 22 20" fill="none" class="pipe-blue pipe-flow-b"/>
+              <path d="M150 452 c14 0 22 -8 22 -20" fill="none" class="pipe-copper pipe-flow-a draw" pathLength="1"/>
+              <path d="M150 428 c14 0 22 8 22 20" fill="none" class="pipe-blue pipe-flow-b draw" pathLength="1"/>
               <text x="118" y="498" class="svgmono" text-anchor="middle">HŐSZIVATTYÚ</text>
               <circle class="flow-dot dot-copper-flow" r="3"><animateMotion dur="4s" repeatCount="indefinite" path="M150 452 c14 0 22 -8 22 -20"/></circle>
               <circle class="flow-dot dot-blue-flow" r="3"><animateMotion dur="4s" begin="2s" repeatCount="indefinite" path="M150 428 c14 0 22 8 22 20"/></circle>
             </g>
             <!-- rendszerviznyomás-vonal az épületig -->
-            <path class="pipe-copper pipe-flow-a main-run" d="M172 452 H 232"/>
-            <path class="pipe-blue pipe-flow-b main-run" d="M172 428 H 232"/>
+            <path class="pipe-copper pipe-flow-a main-run draw" pathLength="1" d="M172 452 H 232"/>
+            <path class="pipe-blue pipe-flow-b main-run draw" pathLength="1" d="M172 428 H 232"/>
             <circle class="flow-dot dot-copper-flow" r="3"><animateMotion dur="2.4s" repeatCount="indefinite" path="M172 452 H232"/></circle>
             <circle class="flow-dot dot-blue-flow" r="3"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M172 428 H232"/></circle>
           </g>
 
-          <!-- ── ÉPÜLET VÁZA (beton/gerendaváz) ── -->
+          <!-- ── ÉPÜLET VÁZA (beton/gerendaváz — felhúzódó vonalakkal) ── -->
           <g class="g-frame">
             <!-- pince/talajszerkezet -->
             <path class="frame-slab" d="M232 462 L320 484 L408 462 L320 440 Z"/>
+            <path class="frame-hatch" d="M232 462 L320 484 L408 462 L320 440 Z"/>
             <!-- fő oszlopok -->
-            <path class="frame-col" d="M232 462 V262"/>
-            <path class="frame-col" d="M408 462 V262"/>
-            <path class="frame-col back" d="M320 484 V284"/>
+            <path class="frame-col draw" pathLength="1" d="M232 462 V262"/>
+            <path class="frame-col draw" pathLength="1" d="M408 462 V262"/>
+            <path class="frame-col back draw" pathLength="1" d="M320 484 V284"/>
             <!-- födémek -->
-            <path class="frame-beam" d="M232 462 L320 484 L408 462"/>
-            <path class="frame-beam" d="M232 372 L320 394 L408 372"/>
-            <path class="frame-beam" d="M232 282 L320 304 L408 282"/>
+            <path class="frame-beam draw" pathLength="1" d="M232 462 L320 484 L408 462"/>
+            <path class="frame-beam draw" pathLength="1" d="M232 372 L320 394 L408 372"/>
+            <path class="frame-beam draw" pathLength="1" d="M232 282 L320 304 L408 282"/>
             <!-- tetőszerkezet -->
-            <path class="frame-roof" d="M224 262 L320 284 L416 262"/>
+            <path class="frame-roof draw" pathLength="1" d="M224 262 L320 284 L416 262"/>
             <path class="frame-roof-t" d="M224 262 L320 224 L416 262 L320 284 Z"/>
+            <path class="frame-hatch" d="M224 262 L320 224 L416 262 L320 284 Z"/>
           </g>
 
           <!-- ── TECHNIKAI HELYISÉG (földszint, réz/kék rendszer) ── -->
@@ -148,7 +174,7 @@
 
           <!-- ── 1. SZINT: PADLÓFŰTÉS (réz spirál) ── -->
           <g class="g-floorheating">
-            <path class="pipe-copper spiral" d="M244 394 q18 -12 36 0 q18 12 36 0 q18 -12 36 0 q18 12 36 0"/>
+            <path class="pipe-copper spiral draw" pathLength="1" d="M244 394 q18 -12 36 0 q18 12 36 0 q18 -12 36 0 q18 12 36 0"/>
             <path class="pipe-copper spiral" d="M244 384 q18 -12 36 0 q18 12 36 0 q18 -12 36 0 q18 12 36 0" opacity=".55"/>
             <text x="452" y="388" class="svgmono" text-anchor="start">PADLÓFŰTÉS</text>
             <circle class="flow-dot dot-copper-flow" r="2.4"><animateMotion dur="5s" repeatCount="indefinite" path="M244 394 q18 -12 36 0 q18 12 36 0 q18 -12 36 0 q18 12 36 0"/></circle>
@@ -164,7 +190,7 @@
           <!-- ── FALINÉLŐ + VÍZREND (kék) ── -->
           <g class="g-water">
             <rect class="water-box" x="352" y="398" width="20" height="28" rx="3" fill="none" stroke="#82B9C8" stroke-width="1.8"/>
-            <path class="water-line" d="M362 398 V336 H448" fill="none"/>
+            <path class="water-line draw" pathLength="1" d="M362 398 V336 H448" fill="none"/>
             <text x="424" y="418" class="svgmono" text-anchor="start">HASZNÁLATI MELEG- ÉS IVÓVÍZ</text>
             <circle class="flow-dot dot-blue-flow" r="2.4"><animateMotion dur="6s" repeatCount="indefinite" path="M362 398 V336 H448"/></circle>
             <circle class="flow-dot dot-blue-flow" r="2.2"><animateMotion dur="6s" begin="3s" repeatCount="indefinite" path="M362 398 V336 H448"/></circle>
@@ -172,7 +198,7 @@
 
           <!-- ── TETŐI SZELLŐZÉS + KLÍMA (kék) ── -->
           <g class="g-air">
-            <path class="duct" d="M320 224 V196 H448 V172" fill="none"/>
+            <path class="duct draw" pathLength="1" d="M320 224 V196 H448 V172" fill="none"/>
             <rect class="duct-end" x="438" y="160" width="20" height="12" rx="2" fill="none" stroke="#82B9C8" stroke-width="2"/>
             <rect class="ac" x="452" y="150" width="54" height="30" rx="5" fill="#101719" stroke="#82B9C8" stroke-width="2"/>
             <path class="ac-fan" d="M466 165 a6 6 0 0 1 6 -6 M466 165 a6 6 0 0 0 -6 6" stroke="#82B9C8" stroke-width="1.6" fill="none"/>
@@ -218,6 +244,35 @@
   <div class="hero-strip mono" aria-hidden="true">
     <div class="hero-strip-track">
       <span>ÉPÜLETGÉPÉSZETI KIVITELEZÉS</span><span class="sep">◆</span><span>VÍZ — CSATORNA</span><span class="sep">◆</span><span>GÁZSZERELÉS</span><span class="sep">◆</span><span>FŰTÉS — PADLÓFŰTÉS</span><span class="sep">◆</span><span>KLÍMA — HŰTÉS</span><span class="sep">◆</span><span>HŐSZIVATTYÚS RENDSZEREK</span><span class="sep">◆</span><span>ÉPÜLETGÉPÉSZETI KIVITELEZÉS</span><span class="sep">◆</span><span>VÍZ — CSATORNA</span><span class="sep">◆</span><span>GÁZSZERELÉS</span><span class="sep">◆</span><span>FŰTÉS — PADLÓFŰTÉS</span><span class="sep">◆</span><span>KLÍMA — HŰTÉS</span><span class="sep">◆</span><span>HŐSZIVATTYÚS RENDSZEREK</span><span class="sep">◆</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ BIZALMI SÁV — műszaki címleblokk ════════════════ -->
+<section class="trust" aria-label="A ProSzer röviden">
+  <div class="container">
+    <div class="trust-block" role="list">
+      <i class="trust-cross tl" aria-hidden="true"></i>
+      <i class="trust-cross tr" aria-hidden="true"></i>
+      <i class="trust-cross bl" aria-hidden="true"></i>
+      <i class="trust-cross br" aria-hidden="true"></i>
+      <div class="trust-cell" role="listitem">
+        <div class="t-head"><span class="t-idx mono">01</span><span class="t-label mono">Alapítás</span></div>
+        <span class="t-value">2009 óta</span>
+      </div>
+      <div class="trust-cell" role="listitem">
+        <div class="t-head"><span class="t-idx mono">02</span><span class="t-label mono">Tapasztalat</span></div>
+        <span class="t-value">15+ év kivitelezés</span>
+      </div>
+      <div class="trust-cell" role="listitem">
+        <div class="t-head"><span class="t-idx mono">03</span><span class="t-label mono">Terület</span></div>
+        <span class="t-value">Komplett épületgépészet</span>
+      </div>
+      <div class="trust-cell" role="listitem">
+        <div class="t-head"><span class="t-idx mono">04</span><span class="t-label mono">Telephely</span></div>
+        <span class="t-value">Gyál és környéke</span>
+      </div>
+      <div class="trust-ruler" aria-hidden="true"></div>
     </div>
   </div>
 </section>
@@ -286,27 +341,27 @@
       <div class="svc-rows" role="list">
         <button class="svc-row active" role="listitem" data-svc="viz" aria-expanded="true">
           <span class="svc-num mono">01</span>
-          <span class="svc-name">Víz és csatorna</span>
+          <span class="svc-main"><span class="svc-name">Víz és csatorna</span><span class="svc-tag mono">IVÓVÍZ · MELEGVÍZ · CSATORNA</span></span>
           <span class="svc-hint mono" aria-hidden="true">+</span>
         </button>
         <button class="svc-row" role="listitem" data-svc="gaz" aria-expanded="false">
           <span class="svc-num mono">02</span>
-          <span class="svc-name">Gázszerelés</span>
+          <span class="svc-main"><span class="svc-name">Gázszerelés</span><span class="svc-tag mono">VEZETÉK · KÉSZÜLÉKCSATLAKOZÁS</span></span>
           <span class="svc-hint mono" aria-hidden="true">+</span>
         </button>
         <button class="svc-row" role="listitem" data-svc="futes" aria-expanded="false">
           <span class="svc-num mono">03</span>
-          <span class="svc-name">Fűtés és padlófűtés</span>
+          <span class="svc-main"><span class="svc-name">Fűtés és padlófűtés</span><span class="svc-tag mono">RADIÁTOR · PADLÓFŰTÉS · EGYENSÚLY</span></span>
           <span class="svc-hint mono" aria-hidden="true">+</span>
         </button>
         <button class="svc-row" role="listitem" data-svc="klima" aria-expanded="false">
           <span class="svc-num mono">04</span>
-          <span class="svc-name">Klíma és hűtés</span>
+          <span class="svc-main"><span class="svc-name">Klíma és hűtés</span><span class="svc-tag mono">BELSŐ ÉS KÜLSŐ EGYSÉG TELEPÍTÉS</span></span>
           <span class="svc-hint mono" aria-hidden="true">+</span>
         </button>
         <button class="svc-row" role="listitem" data-svc="hsz" aria-expanded="false">
           <span class="svc-num mono">05</span>
-          <span class="svc-name">Hőszivattyús rendszerek</span>
+          <span class="svc-main"><span class="svc-name">Hőszivattyús rendszerek</span><span class="svc-tag mono">FŰTÉS · HŰTÉS · MELEGVÍZ</span></span>
           <span class="svc-hint mono" aria-hidden="true">+</span>
         </button>
       </div>
@@ -374,7 +429,7 @@
           <div class="svc-text">
             <h3 data-svc-title>Víz és csatorna</h3>
             <p data-svc-desc>Vízvezeték- és csatornaszerelés: új vezetékek kialakítása, elavult rendszerek cseréje, berendezések bekötése.</p>
-            <a class="btn btn-ghost btn-sm" href="#ajanlat" data-svc-cta>Erről érdeklődöm</a>
+            <a class="btn btn-ghost btn-sm" href="#ajanlat" data-svc-cta><span class="btn-line">Erről érdeklődöm <span class="arr" aria-hidden="true">→</span></span></a>
           </div>
         </div>
       </aside>
@@ -382,95 +437,206 @@
   </div>
 </section>
 
-<!-- ════════════════ C) KÉPI BEMUTATÓ ════════════════ -->
+<!-- ════════════════ C) KÉPI BEMUTATÓ — MŰSZAKI RAJZLAPOK ════════════════ -->
 <section class="gallery light" id="galeria">
   <div class="container">
-    <p class="kicker mono reveal">03 — KÉPI BEMUTATÓ</p>
-    <h2 class="reveal">Gépészeti megoldások</h2>
-    <p class="gallery-sub reveal">Szemléltető illusztrációk a szakmai világról — a saját munkafotók elkészülteig.</p>
+    <div class="gallery-head">
+      <div>
+        <p class="kicker mono reveal">03 — KÉPI BEMUTATÓ</p>
+        <h2 class="reveal">Gépészeti megoldások</h2>
+        <p class="gallery-sub reveal">Öt rajzlap a szakmai világról — szemléltető illusztrációk, amíg a saját munkafotók elkészülnek.</p>
+      </div>
+      <p class="gallery-stamp mono reveal">MINDEN ÁBRA SZEMÉLTETŐ —<br>NEM MŰSZAKI TERV</p>
+    </div>
     <div class="plate-grid">
-      <figure class="plate reveal">
-        <svg viewBox="0 0 420 300" role="img" aria-label="Szemléltető illusztráció: padlófűtési csőfektetés">
-          <rect width="420" height="300" fill="#1C292C"/>
-          <g fill="none" stroke="#D38B59" stroke-width="4" stroke-linecap="round" opacity=".9">
-            <path d="M40 220 h70 a22 22 0 0 0 0 -44 h-40 a22 22 0 0 1 0 -44 h60"/>
-            <path d="M190 132 h70 a22 22 0 0 1 0 44 h-40 a22 22 0 0 0 0 44 h60" opacity=".6"/>
-          </g>
-          <g stroke="#F2F1EB" stroke-width="1" opacity=".14">
-            <path d="M40 60 H380 M40 100 H380 M40 140 H380 M40 180 H380 M40 220 H380 M40 260 H380"/>
-          </g>
-          <text x="40" y="56" class="svgmono" fill="#F2F1EB">PADLÓFŰTÉS — CSŐFEKTETÉS</text>
-        </svg>
-        <figcaption class="mono">01 — PADLÓFŰTÉSI KÖR KIALAKÍTÁSA</figcaption>
+
+      <!-- L.01 — padlófűtés -->
+      <figure class="plate plate-dark reveal" data-num="01">
+        <div class="plate-media">
+          <svg viewBox="0 0 760 560" role="img" aria-label="Szemléltető illusztráció: padlófűtési körök osztókolektorral, alaprajzi vázlat">
+            <rect width="760" height="560" fill="#1C292C"/>
+            <g stroke="#F2F1EB" stroke-opacity=".06" stroke-width="1" fill="none">
+              <path d="M40 80 H720 M40 160 H720 M40 240 H720 M40 320 H720 M40 400 H720 M40 480 H720"/>
+              <path d="M120 40 V520 M280 40 V520 M440 40 V520 M600 40 V520"/>
+            </g>
+            <rect x="70" y="180" width="26" height="230" rx="12" fill="none" stroke="#F2F1EB" stroke-opacity=".7" stroke-width="2"/>
+            <path d="M96 220 H150 M96 300 H150 M96 380 H150" stroke="#D38B59" stroke-width="3" fill="none"/>
+            <circle cx="150" cy="220" r="5" fill="none" stroke="#82B9C8" stroke-width="2"/>
+            <circle cx="150" cy="300" r="5" fill="none" stroke="#82B9C8" stroke-width="2"/>
+            <circle cx="150" cy="380" r="5" fill="none" stroke="#82B9C8" stroke-width="2"/>
+            <text x="70" y="160" class="svgmono" fill="#F2F1EB" fill-opacity=".75">OSZTÓ — GYŰJTŐ</text>
+            <path d="M150 220 H640 a26 26 0 0 1 0 52 H150" fill="none" stroke="#D38B59" stroke-width="5" stroke-linecap="round"/>
+            <path d="M150 300 H560 a26 26 0 0 1 0 52 H150" fill="none" stroke="#D38B59" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+            <path d="M150 380 H470 a26 26 0 0 0 0 -52 H640" fill="none" stroke="#D38B59" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+            <circle class="p-dot" r="3.5"><animateMotion dur="7s" repeatCount="indefinite" path="M150 220 H640 a26 26 0 0 1 0 52 H150"/></circle>
+            <text x="300" y="196" class="svgmono" fill="#F2F1EB" fill-opacity=".55">FŰTÉSI KÖR — 01</text>
+            <text x="240" y="286" class="svgmono" fill="#F2F1EB" fill-opacity=".55">KÖR — 02</text>
+            <rect x="40" y="470" width="680" height="34" fill="url(#hatch)"/>
+            <path d="M40 470 H720 M40 504 H720" stroke="#F2F1EB" stroke-opacity=".25" stroke-width="1" fill="none"/>
+            <text x="40" y="540" class="svgmono" fill="#F2F1EB" fill-opacity=".5">PADLÓSZERKEZET — BURKOLAT ALATTI CSŐFEKTETÉS</text>
+          </svg>
+          <span class="sheet-tag mono">SZEMÉLTETŐ ILLUSZTRÁCIÓ</span>
+          <span class="sheet-code mono">L.01</span>
+        </div>
+        <figcaption class="plate-cap mono"><span>01 — PADLÓFŰTÉSI KÖR KIALAKÍTÁSA</span><span class="pc-right">OSZTÓKOLEKTOR · CSŐFEKTETÉS</span></figcaption>
       </figure>
-      <figure class="plate reveal">
-        <svg viewBox="0 0 420 300" role="img" aria-label="Szemléltető illusztráció: hőszivattyú és fűtési rendszer kapcsolata">
-          <rect width="420" height="300" fill="#F2F1EB"/>
-          <rect x="60" y="140" width="90" height="90" rx="10" fill="none" stroke="#101719" stroke-width="2.4"/>
-          <circle cx="105" cy="185" r="20" fill="none" stroke="#D38B59" stroke-width="2.4"/>
-          <path d="M105 165 v40 M85 185 h40" stroke="#D38B59" stroke-width="1.6"/>
-          <path d="M150 185 H280" stroke="#101719" stroke-width="2.4" fill="none"/>
-          <path d="M150 205 H280" stroke="#82B9C8" stroke-width="2" fill="none" opacity=".7"/>
-          <rect x="280" y="150" width="80" height="70" rx="8" fill="none" stroke="#101719" stroke-width="2.4"/>
-          <text x="60" y="128" class="svgmono" fill="#101719">HŐSZIVATTYÚ</text>
-          <text x="280" y="138" class="svgmono" fill="#101719">FŰTÉSI KÖR</text>
-        </svg>
-        <figcaption class="mono">02 — HŐSZIVATTYÚS RENDSZER VÁZA</figcaption>
+      <figure class="plate plate-m reveal" data-num="02">
+        <div class="plate-media">
+          <svg viewBox="0 0 600 620" role="img" aria-label="Szemléltető illusztráció: gépészeti helyiség vázlatos elrendezése">
+            <rect width="600" height="620" fill="#F2F1EB"/>
+            <g stroke="#101719" stroke-opacity=".08" stroke-width="1" fill="none">
+              <path d="M40 110 H560 M40 210 H560 M40 310 H560 M40 410 H560 M40 510 H560"/>
+            </g>
+            <rect x="50" y="60" width="500" height="500" fill="none" stroke="#101719" stroke-opacity=".4" stroke-width="2"/>
+            <rect x="62" y="72" width="476" height="476" fill="none" stroke="#101719" stroke-opacity=".14" stroke-width="1"/>
+            <rect x="330" y="120" width="150" height="190" rx="8" fill="none" stroke="#101719" stroke-width="2.4"/>
+            <rect x="352" y="150" width="106" height="54" rx="4" fill="none" stroke="#D38B59" stroke-width="2"/>
+            <path d="M366 168 h30 M366 186 h30" stroke="#D38B59" stroke-width="2" opacity=".6" fill="none"/>
+            <path d="M405 120 V78" stroke="#101719" stroke-width="2.4" fill="none"/>
+            <text x="330" y="106" class="svgmono" fill="#101719" fill-opacity=".7">KAZÁN</text>
+            <path d="M250 190 a26 26 0 0 1 52 0 v40 h-52 z" fill="none" stroke="#82B9C8" stroke-width="2.2"/>
+            <path d="M276 230 V440" stroke="#82B9C8" stroke-width="2.2" fill="none"/>
+            <text x="196" y="176" class="svgmono" fill="#101719" fill-opacity=".7">TÁGULÁSI TARTÁLY</text>
+            <rect x="110" y="300" width="80" height="80" rx="10" fill="none" stroke="#101719" stroke-width="2.4"/>
+            <circle cx="150" cy="340" r="24" fill="none" stroke="#D38B59" stroke-width="2.2"/>
+            <path d="M150 320 v40 M130 340 h40" stroke="#D38B59" stroke-width="1.6" fill="none"/>
+            <text x="96" y="286" class="svgmono" fill="#101719" fill-opacity=".7">SZIVATTYÚ</text>
+            <path d="M110 440 H510" stroke="#D38B59" stroke-width="3.4" fill="none"/>
+            <path d="M150 380 V440 M405 310 V440" stroke="#D38B59" stroke-width="2.2" fill="none"/>
+            <path d="M320 432 l16 8 -16 8 z" fill="#F2F1EB" stroke="#101719" stroke-width="1.6"/>
+            <path d="M352 432 l-16 8 16 8 z" fill="#F2F1EB" stroke="#101719" stroke-width="1.6"/>
+            <circle class="p-dot" r="3"><animateMotion dur="6s" repeatCount="indefinite" path="M110 440 H510"/></circle>
+            <text x="300" y="470" class="svgmono" fill="#101719" fill-opacity=".6">KÖRVEZETÉK — ELZÁRÁS</text>
+            <text x="50" y="590" class="svgmono" fill="#101719" fill-opacity=".5">GÉPÉSZETI HELYISÉG — VÁZLATOS ELRENDEZÉS</text>
+          </svg>
+          <span class="sheet-tag mono">SZEMÉLTETŐ ILLUSZTRÁCIÓ</span>
+          <span class="sheet-code mono">L.02</span>
+        </div>
+        <figcaption class="plate-cap mono"><span>02 — GÉPÉSZETI HELYISÉG RENDSZERE</span><span class="pc-right">SZIVATTYÚ · TARTÁLY · KAZÁN</span></figcaption>
       </figure>
-      <figure class="plate reveal">
-        <svg viewBox="0 0 420 300" role="img" aria-label="Szemléltető illusztráció: használati melegvíz rendszer és csővezeték">
-          <rect width="420" height="300" fill="#E4E2D8"/>
-          <rect x="60" y="80" width="70" height="140" rx="8" fill="none" stroke="#101719" stroke-width="2.4"/>
-          <path d="M80 100 v100 M95 100 v100 M110 100 v100" stroke="#82B9C8" stroke-width="2"/>
-          <path d="M130 120 H300 V90 H360" stroke="#82B9C8" stroke-width="2.4" fill="none"/>
-          <path d="M130 180 H300 V220 H360" stroke="#101719" stroke-width="2" fill="none" opacity=".5"/>
-          <circle cx="360" cy="90" r="6" fill="none" stroke="#82B9C8" stroke-width="2"/>
-          <circle cx="360" cy="220" r="6" fill="none" stroke="#101719" stroke-width="2"/>
-          <text x="60" y="66" class="svgmono" fill="#101719">MELEGVÍZ-TÁROLÓ</text>
-        </svg>
-        <figcaption class="mono">03 — HASZNÁLATI MELEGVÍZ ÚTVONAL</figcaption>
+      <figure class="plate plate-m reveal" data-num="03">
+        <div class="plate-media">
+          <svg viewBox="0 0 600 520" role="img" aria-label="Szemléltető illusztráció: hőszivattyú külső egysége és az épület fűtőkörének kapcsolata">
+            <rect width="600" height="520" fill="#E4E2D8"/>
+            <g stroke="#101719" stroke-opacity=".1" stroke-width="1" fill="none">
+              <path d="M40 90 H560 M40 170 H560 M40 250 H560 M40 330 H560 M40 410 H560"/>
+            </g>
+            <rect x="70" y="160" width="180" height="170" rx="12" fill="none" stroke="#101719" stroke-width="2.6"/>
+            <circle cx="150" cy="245" r="40" fill="none" stroke="#101719" stroke-width="2.2"/>
+            <circle cx="150" cy="245" r="12" fill="none" stroke="#D38B59" stroke-width="2"/>
+            <path d="M150 213 V277 M118 245 H182" stroke="#D38B59" stroke-width="1.6" opacity=".8" fill="none"/>
+            <path d="M216 180 v130 M228 180 v130" stroke="#101719" stroke-opacity=".4" stroke-width="2" fill="none"/>
+            <text x="70" y="140" class="svgmono" fill="#101719" fill-opacity=".75">KÜLSŐ EGYSÉG</text>
+            <path d="M250 210 C330 210 330 260 400 260" stroke="#D38B59" stroke-width="4" fill="none"/>
+            <path d="M250 280 C320 280 320 300 400 300" stroke="#82B9C8" stroke-width="2.6" fill="none" opacity=".85"/>
+            <path d="M400 440 V240 L480 190 L560 240 V440" fill="none" stroke="#101719" stroke-width="2.6"/>
+            <path d="M400 350 H560" stroke="#101719" stroke-width="1.6" opacity=".5" fill="none"/>
+            <rect x="470" y="380" width="56" height="14" rx="3" fill="none" stroke="#D38B59" stroke-width="2"/>
+            <path d="M470 387 H420" stroke="#D38B59" stroke-width="2" fill="none"/>
+            <text x="480" y="470" text-anchor="middle" class="svgmono" fill="#101719" fill-opacity=".7">ÉPÜLET — FŰTŐKÖR</text>
+            <text x="40" y="500" class="svgmono" fill="#101719" fill-opacity=".5">SZIGETELT CSŐPÁR A KÜLSŐ EGYSÉGTŐL AZ ÉPÜLETIG</text>
+          </svg>
+          <span class="sheet-tag mono">SZEMÉLTETŐ ILLUSZTRÁCIÓ</span>
+          <span class="sheet-code mono">L.03</span>
+        </div>
+        <figcaption class="plate-cap mono"><span>03 — HŐSZIVATTYÚ ÉS ÉPÜLET KAPCSOLATA</span><span class="pc-right">SZIGETELT CSŐPÁR</span></figcaption>
       </figure>
-      <figure class="plate reveal">
-        <svg viewBox="0 0 420 300" role="img" aria-label="Szemléltető illusztráció: klíma külső és belső egység kapcsolata">
-          <rect width="420" height="300" fill="#101719"/>
-          <rect x="70" y="70" width="110" height="34" rx="6" fill="none" stroke="#82B9C8" stroke-width="2.2"/>
-          <path d="M85 104 q0 26 26 26 h20" stroke="#82B9C8" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
-          <rect x="250" y="150" width="100" height="70" rx="8" fill="none" stroke="#82B9C8" stroke-width="2.2"/>
-          <circle cx="300" cy="185" r="17" fill="none" stroke="#82B9C8" stroke-width="2"/>
-          <path d="M180 185 H250" stroke="#82B9C8" stroke-width="1.8" stroke-dasharray="5 5" fill="none"/>
-          <text x="70" y="58" class="svgmono" fill="#F2F1EB">BELSŐ EGYSÉG</text>
-          <text x="250" y="138" class="svgmono" fill="#F2F1EB">KÜLSŐ EGYSÉG</text>
-        </svg>
-        <figcaption class="mono">04 — KLÍMA: KÉT EGYSÉG KAPCSOLATA</figcaption>
+      <figure class="plate plate-dark reveal" data-num="04">
+        <div class="plate-media">
+          <svg viewBox="0 0 760 560" role="img" aria-label="Szemléltető illusztráció: víz-elosztó törzs szintenkénti leágazásokkal és csatorna-vonal">
+            <rect width="760" height="560" fill="#101719"/>
+            <g stroke="#F2F1EB" stroke-opacity=".05" stroke-width="1" fill="none">
+              <path d="M60 100 H700 M60 200 H700 M60 300 H700 M60 400 H700"/>
+            </g>
+            <path d="M120 90 V470" stroke="#82B9C8" stroke-width="4" fill="none"/>
+            <circle cx="120" cy="90" r="6" fill="none" stroke="#82B9C8" stroke-width="2"/>
+            <text x="96" y="70" class="svgmono" fill="#F2F1EB" fill-opacity=".75">IVÓVÍZ — FELMENŐ TÖRZS</text>
+            <g class="svgmono" fill="#F2F1EB" fill-opacity=".4">
+              <text x="40" y="165">SZ.1</text>
+              <text x="40" y="265">SZ.2</text>
+              <text x="40" y="365">SZ.3</text>
+            </g>
+            <path d="M120 160 H330 M120 260 H330 M120 360 H330" stroke="#82B9C8" stroke-width="2.6" fill="none"/>
+            <g stroke="#82B9C8" stroke-width="2.4" fill="none">
+              <path d="M330 160 v-26 h34 a12 12 0 0 1 12 12 v6"/>
+              <path d="M352 132 v-14 m-8 0 h16"/>
+              <path d="M330 260 v-26 h34 a12 12 0 0 1 12 12 v6"/>
+              <path d="M352 232 v-14 m-8 0 h16"/>
+              <path d="M330 360 v-26 h34 a12 12 0 0 1 12 12 v6"/>
+              <path d="M352 332 v-14 m-8 0 h16"/>
+            </g>
+            <circle cx="120" cy="160" r="5" fill="#101719" stroke="#82B9C8" stroke-width="2"/>
+            <circle cx="120" cy="260" r="5" fill="#101719" stroke="#82B9C8" stroke-width="2"/>
+            <circle cx="120" cy="360" r="5" fill="#101719" stroke="#82B9C8" stroke-width="2"/>
+            <path d="M330 470 H620 L700 442" stroke="#5F9AAE" stroke-width="3" stroke-dasharray="10 7" fill="none"/>
+            <path d="M700 442 l-16 -2 m16 2 l-6 14" stroke="#5F9AAE" stroke-width="2" fill="none"/>
+            <text x="330" y="500" class="svgmono" fill="#F2F1EB" fill-opacity=".55">CSATORNA — LEJTÉS A KOLLEKTOR FELÉ</text>
+            <text x="40" y="540" class="svgmono" fill="#F2F1EB" fill-opacity=".5">VÍZVEVŐ HELYEK — SZINTENKÉNTI ELOSZTÁS</text>
+          </svg>
+          <span class="sheet-tag mono">SZEMÉLTETŐ ILLUSZTRÁCIÓ</span>
+          <span class="sheet-code mono">L.04</span>
+        </div>
+        <figcaption class="plate-cap mono"><span>04 — VÍZ ÉS CSATORNA HÁLÓZAT</span><span class="pc-right">FELMENŐ TÖRZS · LEJTÉS</span></figcaption>
+      </figure>
+
+      <!-- L.05 — klímatechnika, széles -->
+      <figure class="plate plate-wide reveal" data-num="05">
+        <div class="plate-media">
+          <svg viewBox="0 0 760 260" role="img" aria-label="Szemléltető illusztráció: klímatechnika, szigetelt hűtőkör-pár a belső és külső egység között">
+            <rect width="760" height="260" fill="#F2F1EB"/>
+            <path d="M40 60 H720" stroke="#101719" stroke-opacity=".16" stroke-width="1" fill="none"/>
+            <path d="M40 216 H720" stroke="#101719" stroke-opacity=".16" stroke-width="1" fill="none"/>
+            <rect x="60" y="84" width="280" height="52" rx="8" fill="none" stroke="#101719" stroke-width="2.4"/>
+            <path d="M84 122 h30 M128 122 h30 M172 122 h30 M216 122 h30 M260 122 h30" stroke="#101719" stroke-opacity=".5" stroke-width="1.6" fill="none"/>
+            <circle cx="80" cy="100" r="5" fill="none" stroke="#82B9C8" stroke-width="1.8"/>
+            <text x="60" y="70" class="svgmono" fill="#101719" fill-opacity=".75">BELSŐ EGYSÉG</text>
+            <g stroke="#82B9C8" stroke-width="2" fill="none" opacity=".8">
+              <path d="M120 148 v28 m-7 -10 7 10 7 -10"/>
+              <path d="M200 148 v28 m-7 -10 7 10 7 -10"/>
+              <path d="M280 148 v28 m-7 -10 7 10 7 -10"/>
+            </g>
+            <path d="M340 96 H620" stroke="#D38B59" stroke-width="3" fill="none"/>
+            <path d="M340 116 H580 V140 H620" stroke="#82B9C8" stroke-width="2.4" fill="none"/>
+            <path d="M440 88 v16 M470 88 v16 M500 88 v16 M530 88 v16" stroke="#101719" stroke-opacity=".3" stroke-width="1.6" fill="none"/>
+            <text x="400" y="80" class="svgmono" fill="#101719" fill-opacity=".6">SZIGETELT HŰTŐKÖR — PÁR</text>
+            <circle class="p-dot" r="3"><animateMotion dur="6s" repeatCount="indefinite" path="M340 96 H620"/></circle>
+            <circle class="p-dot blue" r="3"><animateMotion dur="7s" repeatCount="indefinite" path="M620 140 H580 V116 H340"/></circle>
+            <rect x="620" y="110" width="110" height="70" rx="10" fill="none" stroke="#101719" stroke-width="2.4"/>
+            <circle cx="672" cy="145" r="24" fill="none" stroke="#101719" stroke-width="2"/>
+            <circle cx="672" cy="145" r="8" fill="none" stroke="#D38B59" stroke-width="2"/>
+            <path d="M672 125 v40 M652 145 h40" stroke="#D38B59" stroke-width="1.4" opacity=".8" fill="none"/>
+            <path d="M714 122 v46" stroke="#101719" stroke-opacity=".4" stroke-width="2" fill="none"/>
+            <path d="M744 132 q10 8 0 16 M754 126 q12 12 0 24" stroke="#82B9C8" stroke-width="2" fill="none"/>
+            <text x="675" y="206" text-anchor="middle" class="svgmono" fill="#101719" fill-opacity=".75">KÜLSŐ EGYSÉG</text>
+            <text x="40" y="248" class="svgmono" fill="#101719" fill-opacity=".5">KONDENZVÍZ-ELVEZETÉS A BELSŐ EGYSÉGBEN — SZEMÉLTETŐ SEMA</text>
+          </svg>
+          <span class="sheet-tag mono">SZEMÉLTETŐ ILLUSZTRÁCIÓ</span>
+          <span class="sheet-code mono">L.05</span>
+        </div>
+        <figcaption class="plate-cap mono"><span>05 — KLÍMATECHNIKA</span><span class="pc-right">BELSŐ ÉS KÜLSŐ KÖR</span></figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ════════════════ D) TELEFONOS EGYEZTETÉS ════════════════ -->
-<section class="callout" id="egyeztetes">
-  <div class="container">
-    <p class="kicker mono reveal">04 — EGYEZTETÉS</p>
-    <h2 class="reveal">Új rendszer vagy korszerűsítés?</h2>
-    <p class="callout-sub reveal">Mondja el, mire van szüksége. Egyeztessünk a részletekről.</p>
-    <div class="callout-actions reveal">
-      <a class="btn btn-copper btn-lg" href="tel:+36204002944">
-        <span class="btn-num">+36 20 400 2944</span>
-        <span class="btn-sub mono">Kovács Péter — hívás indítása</span>
-      </a>
-      <a class="btn btn-ghost btn-lg" href="#ajanlat">Írásban kérné? →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════ E) AJÁNLATKÉRŐ ════════════════ -->
+<!-- ════════════════ D) AJÁNLATKÉRŐ ════════════════ -->
 <section class="quote light" id="ajanlat">
   <div class="container">
+    <div class="form-cta reveal">
+      <div class="fc-copy">
+        <span class="fc-kicker mono">TELEFONON GYORSABB</span>
+        <p class="fc-text"><strong>Új rendszer vagy korszerűsítés?</strong> Egy telefon is elég — a részleteket egyeztetjük.</p>
+      </div>
+      <a class="btn btn-copper" href="tel:+36204002944">
+        <span class="btn-row"><svg class="btn-ico" viewBox="0 0 20 20" aria-hidden="true"><path d="M4.2 2.6c.5-.5 1.3-.5 1.8 0l1.9 1.9c.5.5.5 1.3 0 1.8l-.9.9c.9 1.9 2.4 3.4 4.3 4.3l.9-.9c.5-.5 1.3-.5 1.8 0l1.9 1.9c.5.5.5 1.3 0 1.8l-1 1c-.6.6-1.5.9-2.3.6-4.6-1.4-8.2-5-9.6-9.6-.3-.8 0-1.7.6-2.3l.6-.6z" fill="currentColor"/></svg><span class="btn-num">+36 20 400 2944</span></span>
+        <span class="btn-sub mono">Kovács Péter — hívás indítása</span>
+      </a>
+    </div>
     <div class="quote-grid">
       <div class="quote-copy">
-        <p class="kicker mono reveal">05 — AJÁNLATKÉRÉS</p>
+        <p class="kicker mono reveal">04 — AJÁNLATKÉRÉS</p>
         <h2 class="reveal">Írja le, mi kellene. Visszahívunk.</h2>
-        <p class="reveal">Töltse ki az űrlapot, és egyeztetünk a részletekről. Telefonon gyorsabban megy — de írásban is szívesen fogadjuk.</p>
+        <p class="reveal">Töltse ki az űrlapot — a részleteket utána egyeztetjük telefonon vagy személyesen.</p>
         <div class="quote-note mono reveal">
           <strong>Ez látványterv.</strong> Az adatok nem kerülnek elküldésre — a kész weboldalon a beérkező üzenetek közvetlenül a céghez jutnak.
         </div>
@@ -538,7 +704,7 @@
   <div class="container">
     <div class="contact-grid">
       <div class="contact-copy">
-        <p class="kicker mono reveal">06 — KAPCSOLAT</p>
+        <p class="kicker mono reveal">05 — KAPCSOLAT</p>
         <h2 class="reveal">Beszéljünk a munkáról.</h2>
         <p class="reveal">Kovács Péter ügyvezető veszi a telefont, és átgondolja Önnel, milyen megoldás illik az épülethez.</p>
       </div>

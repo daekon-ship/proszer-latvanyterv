@@ -79,7 +79,20 @@
   var svcCta = d.querySelector("[data-svc-cta]");
   var svcSelect = d.getElementById("fSzolg");
 
-  function setService(key) {
+  function prefillSelect(topic) {
+    if (!svcSelect || !topic) return;
+    for (var i = 0; i < svcSelect.options.length; i++) {
+      if (svcSelect.options[i].value === topic) {
+        if (svcSelect.value !== topic) {
+          svcSelect.value = topic;
+          svcSelect.classList.add("pre-selected");
+        }
+        return;
+      }
+    }
+  }
+
+  function setService(key, prefill) {
     var conf = SVC[key];
     if (!conf) return;
     svcRows.forEach(function (r) {
@@ -93,31 +106,54 @@
     if (svcTitle) svcTitle.textContent = conf.title;
     if (svcDesc) svcDesc.textContent = conf.desc;
     if (svcCta) svcCta.setAttribute("data-topic", conf.title);
+    if (prefill) prefillSelect(conf.title);
   }
 
   svcRows.forEach(function (row) {
     row.addEventListener("click", function () {
-      setService(row.getAttribute("data-svc"));
+      setService(row.getAttribute("data-svc"), true);
     });
   });
 
   if (svcCta) {
     svcCta.addEventListener("click", function () {
-      var topic = svcCta.getAttribute("data-topic") || "";
-      if (svcSelect && topic) {
-        for (var i = 0; i < svcSelect.options.length; i++) {
-          if (svcSelect.options[i].value === topic) {
-            svcSelect.value = topic;
-            svcSelect.classList.add("pre-selected");
-            break;
-          }
-        }
-      }
+      prefillSelect(svcCta.getAttribute("data-topic"));
     });
   }
 
   // kezdeti állapot
   setService("viz");
+
+  /* ── 3b. Fejléc-állapot + finom hero parallax ── */
+  var header = d.querySelector(".site-header");
+  if (header) {
+    var onScrollHeader = function () {
+      header.classList.toggle("is-scrolled", (window.scrollY || 0) > 12);
+    };
+    window.addEventListener("scroll", onScrollHeader, { passive: true });
+    onScrollHeader();
+  }
+
+  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  var heroEl = d.querySelector(".hero");
+  if (heroFig && iso && heroEl && finePointer && !reduceMotion) {
+    var pTx = 0, pTy = 0, pRaf = null;
+    var applyParallax = function () {
+      pRaf = null;
+      heroFig.style.transform = "perspective(1100px) rotateX(" + (-pTy * 0.6).toFixed(2) + "deg) rotateY(" + (pTx * 0.8).toFixed(2) + "deg)";
+      iso.style.transform = "translate3d(" + (pTx * 3).toFixed(1) + "px," + (pTy * 3).toFixed(1) + "px,0)";
+    };
+    heroEl.addEventListener("pointermove", function (ev) {
+      var r = heroFig.getBoundingClientRect();
+      pTx = Math.max(-1, Math.min(1, (ev.clientX - (r.left + r.width / 2)) / (r.width / 2)));
+      pTy = Math.max(-1, Math.min(1, (ev.clientY - (r.top + r.height / 2)) / (r.height / 2)));
+      if (!pRaf) pRaf = window.requestAnimationFrame(applyParallax);
+    });
+    heroEl.addEventListener("pointerleave", function () {
+      pTx = 0; pTy = 0;
+      if (!pRaf) pRaf = window.requestAnimationFrame(applyParallax);
+    });
+  }
 
   /* ── 4. Űrlap: validáció + képelőnézet ───────────────────── */
   var form = d.getElementById("quoteForm");
