@@ -689,6 +689,7 @@ a.cc-value:hover { color: var(--copper); }
 .no-js .iso .g-radiator, .no-js .iso .g-water, .no-js .iso .g-air { opacity: 1; transform: none; }
 .no-js .iso .shell-front { opacity: .3; }
 .no-js .iso .draw { stroke-dasharray: none; stroke-dashoffset: 0; }
+.no-draw .iso .draw { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; animation: none !important; }
 .no-js .svc-diagram .sd { display: block; }
 .no-js .svc-diagram .sd:not([data-sd="viz"]) { display: none; }
 

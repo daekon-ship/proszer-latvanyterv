@@ -124,6 +124,18 @@
   // kezdeti állapot
   setService("viz");
 
+  /* ── 3a+. Biztonsági háló: ha a böngésző nem támogatja a pathLength-alapú
+     vonal-felhúzást, a rajzvonalak véglegesen láthatóvá tétele ── */
+  window.setTimeout(function () {
+    var probe = d.querySelector(".iso .draw");
+    if (!probe) return;
+    var cs = window.getComputedStyle(probe);
+    var off = parseFloat(cs.strokeDashoffset);
+    if (!isNaN(off) && off > 0.5) {
+      root.classList.add("no-draw");
+    }
+  }, 2600);
+
   /* ── 3b. Fejléc-állapot + finom hero parallax ── */
   var header = d.querySelector(".site-header");
   if (header) {
